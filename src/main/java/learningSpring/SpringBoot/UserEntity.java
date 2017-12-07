@@ -4,7 +4,7 @@ package learningSpring.SpringBoot;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class UserEntity {
@@ -12,7 +12,8 @@ public class UserEntity {
    @Id
    private String email;
    private String pass;
-   private Set<PostEntity> posts;
+   @OneToMany(mappedBy = "userEntity")
+   private List<PostEntity> postEntity;
 
     protected UserEntity(){
     }
@@ -22,9 +23,8 @@ public class UserEntity {
         this.pass=password;
     }
 
-    @OneToMany(mappedBy = "user")
-    public Set<PostEntity> getPost() {
-        return posts;
+    public List<PostEntity> getPost() {
+        return postEntity;
     }
 
     public String getLogin(){

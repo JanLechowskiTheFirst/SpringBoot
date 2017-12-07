@@ -10,6 +10,9 @@ import javax.persistence.ManyToOne;
 public class PostEntity {
     @Id
     private String email;
+    @ManyToOne
+    @JoinColumn(name = "postEntity")
+    private UserEntity userEntity;
     private String post;
     private String postDate;
 
@@ -19,8 +22,8 @@ public class PostEntity {
         this.post=post;
         this.email=email;
     }
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    public UserEntity getUserEntity(){ return userEntity; }
+
     public String getUserEmail(){
         return email;
     }
