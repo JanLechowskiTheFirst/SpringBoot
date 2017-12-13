@@ -6,8 +6,7 @@ public class LoginForm {
     private String password;
     private String content;
 
-    public String getEmail(){
-        return email;
+    public String getEmail(){ return email;
     }
 
     public String getPassword(){
