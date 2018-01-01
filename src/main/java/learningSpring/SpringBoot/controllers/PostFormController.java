@@ -1,5 +1,9 @@
-package learningSpring.SpringBoot;
+package learningSpring.SpringBoot.controllers;
 
+import learningSpring.SpringBoot.entities.PostEntity;
+import learningSpring.SpringBoot.repositories.PostRepo;
+import learningSpring.SpringBoot.repositories.UserRepo;
+import learningSpring.SpringBoot.forms.PostForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +36,7 @@ public class PostFormController {
 
 
 
-    @RequestMapping("/post/{postValue}")  //TODO dodac przycisk z przekierowaniem na strone o takim formacie
+    @RequestMapping("/post/{postValue}")
     public String doPost(@PathVariable String postValue, @RequestParam(value="email") String email, Model model){
         model.addAttribute("post", postValue);
         postRepo.save(new PostEntity(postValue, userRepo.findOne(email).getLogin()));

@@ -1,6 +1,4 @@
-package learningSpring.SpringBoot;
-
-import java.util.Date;
+package learningSpring.SpringBoot.forms;
 
 public class PostForm {
     private String post;

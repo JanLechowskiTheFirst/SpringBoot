@@ -1,4 +1,4 @@
-package learningSpring.SpringBoot;
+package learningSpring.SpringBoot.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
