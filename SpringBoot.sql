@@ -16,3 +16,11 @@ ALTER TABLE UserEntity
 ADD CONSTRAINT emailFKeyOnUser
    FOREIGN KEY (email)
    REFERENCES Post (email);
+
+CREATE TABLE UserRole(
+  email VARCHAR2(30) PRIMARY KEY,
+  userRole VARCHAR2(15),
+  CONSTRAINT roleKey UNIQUE (email, userRole),
+  CONSTRAINT emailKey FOREIGN KEY (email)
+  REFERENCES UserEntity (email)
+  );

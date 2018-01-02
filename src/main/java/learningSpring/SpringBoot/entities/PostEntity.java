@@ -16,7 +16,7 @@ public class PostEntity {
     private String post;
     private String postDate;
 
-    public PostEntity(){}
+    protected PostEntity(){}
 
     public PostEntity(String post, String email){
         this.post=post;

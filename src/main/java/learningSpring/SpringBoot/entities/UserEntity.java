@@ -14,6 +14,8 @@ public class UserEntity {
    private String pass;
    @OneToMany(mappedBy = "userEntity")
    private List<PostEntity> postEntity;
+   @OneToMany(mappedBy = "userEntity")
+   private List<RoleEntity> roleEntity;
 
     protected UserEntity(){
     }
@@ -25,6 +27,10 @@ public class UserEntity {
 
     public List<PostEntity> getPost() {
         return postEntity;
+    }
+
+    public List<RoleEntity> getRole() {
+        return roleEntity;
     }
 
     public String getLogin(){

@@ -1,0 +1,22 @@
+//Pushing to origin master: cd/Desktop/SpringBoot then push -u origin master
+
+Notatki:
+1.1.2018
+Na początku dodam autoryzację logowania przy użyciu JDBC, następnie dodam rejestrację tego typu.
+Później dodam logikę walidację - na końcu obsłużę część 'biznesową' związaną z dodawaniem/wczytywaniem postów.
+
+
+02.01.2018
+Żeby dodać autoryzację z DB trzeba stworzyć konfigurację typu MvcConfig
+a w niej konfiguracje DataSource. Wymaga to wyczyszczenia konfiguracji z
+aplication.properties.
+
+Problem z dodaniem testowego użytkownika - ORA-02291: integrity constraint (SYSTEM.EMAILFKEYONUSER) violated - parent key not found,
+chodzi o foreigh key. Do naprawienia jutro, potrzebuje moc robic inserty do samej tabeli userentity bez koniecznosci robienia
+insertow do pozostalych.
+
+Dodatkowo musze sie dowiedziec jak zrobic, zeby kazdy uzytkownik mial dostep tylko do swojej strony (to juz prawie zrobione)
+ale ktos o roli Admin mial dostep do wszystkich stron.
+
+Pomysl na dalszy rozwoj. Tylko jedna osoba na poczatku bedzie miala role Admin. Trzba stworzyc panel admina do ktorego tylko
+admini maja dostep, w ktorym bedzie mozna nadac uzytkownikowi role admina.

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostFormController {
@@ -21,17 +22,13 @@ public class PostFormController {
     @GetMapping("/post")
     public String postForm(@RequestParam(value="email") String email, Model model){
         model.addAttribute("post", new PostForm());
-        for(PostEntity post:postRepo.findAll()){
-            if(post.getUserEmail().equals(email)) {
-                posts.add(post);
-            }
-        }
-        return "post";
+        List<PostEntity> allPosts = postRepo.findByEmail(email);
+        return "posts";
     }
 
     @PostMapping("/post")
     public String postSubmit(@ModelAttribute PostForm postform ){
-        return "post";
+        return "posts";
     }
 
 
@@ -39,8 +36,8 @@ public class PostFormController {
     @RequestMapping("/post/{postValue}")
     public String doPost(@PathVariable String postValue, @RequestParam(value="email") String email, Model model){
         model.addAttribute("post", postValue);
-        postRepo.save(new PostEntity(postValue, userRepo.findOne(email).getLogin()));
-        return "redirect:post.html";
+        postRepo.save(new PostEntity(postValue, email));
+        return "redirect:posts";
     }
 
 }
