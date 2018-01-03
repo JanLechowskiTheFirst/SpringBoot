@@ -12,10 +12,6 @@ CREATE TABLE Post(
    REFERENCES UserEntity (email)
    );
    
-ALTER TABLE UserEntity
-ADD CONSTRAINT emailFKeyOnUser
-   FOREIGN KEY (email)
-   REFERENCES Post (email);
 
 CREATE TABLE UserRole(
   email VARCHAR2(30) PRIMARY KEY,
@@ -24,3 +20,12 @@ CREATE TABLE UserRole(
   CONSTRAINT emailKey FOREIGN KEY (email)
   REFERENCES UserEntity (email)
   );
+
+  INSERT INTO USERENTITY(email,pass)
+  VALUES ('test','123');
+
+  INSERT INTO USERROLE(email,userrole)
+  VALUES ('test','user');
+
+  ALTER TABLE USERENTITY
+  ADD enabled NUMBER DEFAULT 1 NOT NULL;

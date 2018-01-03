@@ -12,6 +12,7 @@ public class UserEntity {
    @Id
    private String email;
    private String pass;
+   private int enabled;
    @OneToMany(mappedBy = "userEntity")
    private List<PostEntity> postEntity;
    @OneToMany(mappedBy = "userEntity")
@@ -20,9 +21,10 @@ public class UserEntity {
     protected UserEntity(){
     }
 
-    public UserEntity(String email, String password){
+    public UserEntity(String email, String password, int enabled){
         this.email=email;
         this.pass=password;
+        this.enabled=enabled;
     }
 
     public List<PostEntity> getPost() {
@@ -38,4 +40,6 @@ public class UserEntity {
     }
 
     public String getPassword(){return this.pass;}
+
+    public int getEnabled(){return this.enabled;}
 }

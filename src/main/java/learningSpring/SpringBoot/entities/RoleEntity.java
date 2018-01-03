@@ -12,7 +12,7 @@ public class RoleEntity {
     private String email;
     private String userRole;
     @ManyToOne
-    @JoinColumn(name = "userRole")
+    @JoinColumn(name = "userRole",  insertable = false, updatable = false)
     private UserEntity userEntity;
 
     protected RoleEntity(){
