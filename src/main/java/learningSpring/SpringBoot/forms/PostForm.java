@@ -1,18 +1,40 @@
 package learningSpring.SpringBoot.forms;
 
+import java.sql.Timestamp;
+
 public class PostForm {
     private String post;
-    private String date;
+    private int user_id;
+    private Timestamp postDate;
     private String content;
 
-    public String getPostDate(){return date;}
 
     public String getPostText(){
         return post;
     }
 
+    public int getUserId(){
+        return user_id;
+    }
+
+    public Timestamp getPostDate(){
+        return postDate;
+    }
+
     public String getContent(){
         return content;
+    }
+
+    public void setDate(){
+        this.postDate= new Timestamp(System.currentTimeMillis());
+    }
+
+    public void setId(int id){
+        this.user_id=id;
+    }
+
+    public void setPost(String post){
+        this.post=post;
     }
 
     public void setContent(String content){

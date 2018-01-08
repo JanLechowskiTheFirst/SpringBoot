@@ -27,9 +27,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
             .usersByUsernameQuery(
-                    "select email,pass,enabled from UserEntity where email=?")
+                    "select email,pass,enabled from users where email=?")
             .authoritiesByUsernameQuery(
-                    "select u.email, r.userRole from UserEntity u inner join UserRole r on (r.email=u.email) where u.email=?");
+                    "select u.email, r.user_role from users u inner join user_role r on (r.user_id=u.id) where u.email=?");
     }
 
 
@@ -37,8 +37,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/login","/","login?logout").permitAll()
-          //TODO nie działą i nie wiem dlaczego  .antMatchers("/admin/**").access("hasRole('admin')")
-            .anyRequest().authenticated()
+            .antMatchers("/admin/**").access("hasRole('ROLE_admin')") //TEST: admin, 123
+            .antMatchers("/post/**").access("hasAnyRole('ROLE_user','ROLE_admin')") //TEST: test, 123
             .and()
             .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password")
             .and()

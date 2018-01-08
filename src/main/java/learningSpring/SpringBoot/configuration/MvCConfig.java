@@ -17,9 +17,9 @@ public class MvCConfig extends WebMvcConfigurerAdapter {
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName(oracle.jdbc.driver.OracleDriver.class.getName());
-        driverManagerDataSource.setUrl("jdbc:oracle:thin:SYSTEM/flash1@localhost:1521:XE");
-        driverManagerDataSource.setUsername("SYSTEM");
-        driverManagerDataSource.setPassword("flash1");
+        driverManagerDataSource.setUrl("jdbc:oracle:thin:jan/flash123@localhost:1521:XE");
+        driverManagerDataSource.setUsername("jan");
+        driverManagerDataSource.setPassword("flash123");
         return driverManagerDataSource;
     }
 
