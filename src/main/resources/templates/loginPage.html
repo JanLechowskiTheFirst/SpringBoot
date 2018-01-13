@@ -7,6 +7,9 @@
 </head>
 <body>
 <h1>Login</h1>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
 <br/>
 <h3>Login to see the posts:</h3>
 <form th:action="@{/login}" method="post">
@@ -14,5 +17,7 @@
     <div><label> Password:<input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>
 </form>
+<br/>
+<a href="/register">Register</a>
 </body>
 </html>

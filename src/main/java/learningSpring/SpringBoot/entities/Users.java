@@ -1,10 +1,11 @@
 package learningSpring.SpringBoot.entities;
 
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name="users", uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class Users {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "sequence")
@@ -26,10 +27,10 @@ public class Users {
     protected Users(){
     }
 
-    public Users(String email, String password, int enabled){
+    public Users(String email, String password){
+        this.enabled=1;
         this.email=email;
         this.pass=password;
-        this.enabled=enabled;
     }
 
     public List<Post> getPosts() {
@@ -40,7 +41,15 @@ public class Users {
         return UserRoles;
     }
 
-    public int getId(){
+    public void setPosts(List<Post> Posts){
+        this.Posts=Posts;
+    }
+
+    public void setRolesList(List<UserRole> UserRoles){
+        this.UserRoles= UserRoles;
+    }
+
+    public Integer getId(){
         return id;
     }
 
@@ -55,4 +64,12 @@ public class Users {
     public String getPassword(){return this.pass;}
 
     public int getEnabled(){return this.enabled;}
+
+    public void setPassword(String password){
+        this.pass=password;
+    }
+
+    public void setEmail(String email){
+        this.email=email;
+    }
 }

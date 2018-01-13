@@ -30,6 +30,10 @@ public class Post {
         this.post=post;
     }
 
+    public Users getUsers(){
+        return users;
+    }
+
     public void setPost(String post) {
         this.post = post;
     }

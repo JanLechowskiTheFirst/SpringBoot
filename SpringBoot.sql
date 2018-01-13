@@ -2,7 +2,8 @@ CREATE TABLE users(
    id NUMBER(10) primary key NOT NULL,
    email VARCHAR2(30),
    pass VARCHAR2(30),
-   enabled NUMBER DEFAULT 1 NOT NULL);
+   enabled NUMBER DEFAULT 1 NOT NULL,
+   CONSTRAINT uniqueEmail UNIQUE (email));
 
    CREATE TABLE post(
    id NUMBER(10) primary key NOT NULL,

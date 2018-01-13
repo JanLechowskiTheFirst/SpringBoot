@@ -32,7 +32,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                     "select u.email, r.user_role from users u inner join user_role r on (r.user_id=u.id) where u.email=?");
     }
 
-
+    //TODO encrypt the password
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()

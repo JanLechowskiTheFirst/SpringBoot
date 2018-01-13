@@ -22,6 +22,10 @@ public class UserRole {
     protected UserRole(){
     }
 
+    public Users getUsers(){
+        return users;
+    }
+
     public UserRole(int userId, String userRole){
         this.userId=userId;
         this.userRole=userRole;
