@@ -9,27 +9,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     UserRepo userRepo;
     @Autowired
     RoleRepo role;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void addUserToDB(UserForm registrationForm){
         String email = registrationForm.getEmail();
-        String password = registrationForm.getPassword();
+        String password = bCryptPasswordEncoder.encode(registrationForm.getPassword());
         userRepo.saveAndFlush(new Users(email, password));
         role.saveAndFlush(new UserRole(userRepo.findOneByMail(email).getId(), "ROLE_user"));
     }
-
-    public UserDetails getUserDetails(String email) throws UsernameNotFoundException {
+    @Transactional
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Users user = userRepo.findOneByMail(email);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

@@ -1,13 +1,16 @@
 package learningSpring.SpringBoot.configuration;
 
 
+import learningSpring.SpringBoot.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -22,6 +25,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
     @Autowired
     DataSource dataSource;
+    @Autowired
+    UserService userService;
 
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,7 +37,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                     "select u.email, r.user_role from users u inner join user_role r on (r.user_id=u.id) where u.email=?");
     }
 
-    //TODO encrypt the password
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -47,6 +56,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
             .exceptionHandling().accessDeniedPage("/403")
             .and()
             .csrf();
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 }
 
