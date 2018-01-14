@@ -1,5 +1,6 @@
 package learningSpring.SpringBoot.controllers;
 
+import learningSpring.SpringBoot.entities.Post;
 import learningSpring.SpringBoot.forms.PostForm;
 import learningSpring.SpringBoot.repositories.PostRepo;
 import learningSpring.SpringBoot.repositories.UserRepo;
@@ -16,12 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class PostFormController {
 
-
-
-    @Autowired
-    private PostRepo postRepo;
-    @Autowired
-    UserRepo userRepo;
     @Autowired
     PostService postService;
 
@@ -30,7 +25,7 @@ public class PostFormController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = authentication.getName();
         model.addAttribute("postForm", new PostForm());
-        model.addAttribute("post", postService.getAllPosts(userEmail));
+        model.addAttribute("post", postService.getSortedPosts(userEmail));
         return "postPage";
     }
 

@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="post")
-public class Post {
+public class Post implements Comparable<Post>{
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
     @SequenceGenerator(name = "id_Sequence", sequenceName = "pst_id")
@@ -56,6 +56,10 @@ public class Post {
         return postDate;
     }
 
+    @Override
+    public int compareTo(Post o) {
+        return o.getPostDate().compareTo(getPostDate());
+    }
 }
 
 

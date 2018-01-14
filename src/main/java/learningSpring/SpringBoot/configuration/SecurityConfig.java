@@ -49,7 +49,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
             .antMatchers("/admin/**").access("hasRole('ROLE_admin')") //TEST: admin, 123
             .antMatchers("/post/**").access("hasAnyRole('ROLE_user','ROLE_admin')") //TEST: test, 123
             .and()
-            .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password")
+            .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/post")
             .and()
             .logout().logoutSuccessUrl("/login?logout")
             .and()

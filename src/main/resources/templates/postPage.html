@@ -11,15 +11,18 @@
 <h1>Your Posts</h1>
 </div>
     <div>
-        <tr th:each="post : ${post}">
-            <td th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}"></td>
-            <td th:text="${post.post}"></td>
-        </tr>
+        <th:block th:each="post : ${post}">
+            <tr>
+                <td th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}">Date</td>
+                <td th:text="${post.post}">Post</td>
+            </tr>
+            <br/>
+        </th:block>
     </div>
-<form th:action="@{/post}" th:object="${postForm}" method="post">
-    <div><label> Write here your post:<input type="text" name="post"/> </label></div>
-    <div><input type="submit" value="Add post"/></div>
-</form>
+    <form th:action="@{/post}" th:object="${postForm}" method="post">
+        <div><label> Write here your post:<input type="text" name="post"/> </label></div>
+        <div><input type="submit" value="Add post"/></div>
+    </form>
 </div>
 <div>
     <form th:action="@{/logout}" method="post">
