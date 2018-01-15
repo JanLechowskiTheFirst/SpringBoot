@@ -1,9 +1,6 @@
 package learningSpring.SpringBoot.controllers;
 
-import learningSpring.SpringBoot.entities.Post;
 import learningSpring.SpringBoot.forms.PostForm;
-import learningSpring.SpringBoot.repositories.PostRepo;
-import learningSpring.SpringBoot.repositories.UserRepo;
 import learningSpring.SpringBoot.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

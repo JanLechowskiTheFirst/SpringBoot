@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
+<link>
     <meta charset="UTF-8"></meta>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Strona główna</title>
 </head>
 <body>
-    <h1>Home Page</h1>
-    <br/>
-    <a href="/post">Login</a>
-    <a href="/register">Register</a>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center"><h2>Home Page</h2></div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '/login';">Log in</button>
+                    </div>
+                    <br/>
+                    <br/>
+                    <h5>If you don't have account register first</h5>
+                    <button type="button" class="btn btn-info btn-sm" onclick="location.href = '/register';">Register</button>
+                    <h5>Login to admin panel</h5>
+                    <button type="button" class="btn btn-info btn-sm" onclick="location.href = '/admin/admin';">Admin panel</button>
+               </div>
+               </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
 </body>
 </html>
+
+

@@ -3,31 +3,38 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"></meta>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Posts</title>
 </head>
 <body>
-<div>
-<div>
-<h1>Your Posts</h1>
-</div>
     <div>
-        <th:block th:each="post : ${post}">
-            <tr>
-                <td th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}">Date</td>
-                <td th:text="${post.post}">Post</td>
-            </tr>
-            <br/>
-        </th:block>
+    <div>
+    <h1>Your Posts</h1>
     </div>
-    <form th:action="@{/post}" th:object="${postForm}" method="post">
-        <div><label> Write here your post:<input type="text" name="post"/> </label></div>
-        <div><input type="submit" value="Add post"/></div>
-    </form>
-</div>
-<div>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
-</div>
+        <div>
+            <table th:block th:each="post : ${post}">
+                <tr>
+                    <td th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td th:text="${post.post}"></td>
+                </tr>
+            </table>
+        </div>
+        <form th:action="@{/post}" th:object="${postForm}" method="post">
+            <div><label> Write here your post:<input type="text" name="post"/> </label></div>
+            <div><input type="submit" value="Add post"/></div>
+        </form>
+    </div>
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
 </body>
 </html>

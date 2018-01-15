@@ -3,22 +3,30 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"></meta>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>register</title>
 </head>
 <body>
-<h1>Registration</h1>
-<br/>
-<h3>Create user</h3>
-<form th:action="@{/register}" th:object="${UserForm}" method="post">
-    <div><label> Username:<input type="text" th:field="*{email}"/> </label></div>
-    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <h1>Registration</h1>
+    <br/>
+    <h3>Create user</h3>
+    <form th:action="@{/register}" th:object="${UserForm}" method="post">
+        <div><label> Username:<input type="text" th:field="*{email}"/> </label></div>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
 
-    <div><label> Password:<input type="password" th:field="*{password}"/> </label></div>
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+        <div><label> Password:<input type="password" th:field="*{password}"/> </label></div>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
 
-    <div><label> Repeat Password:<input type="password" th:field="*{password2}"/> </label></div>
-    <div th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">Repeat Password Error</div>
-    <div><input type="submit" value="Register"/></div>
-</form>
+        <div><label> Repeat Password:<input type="password" th:field="*{password2}"/> </label></div>
+        <div th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">Repeat Password Error</div>
+        <div><input type="submit" value="Register"/></div>
+    </form>
 </body>
 </html>
