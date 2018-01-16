@@ -1,0 +1,13 @@
+.btn-primary-outline {
+    background-color: #4169E1;
+  }
+
+ .centered {
+   position: fixed;
+   top: 20%;
+
+ }
+
+ body{
+    background-image: url('../css/images/concrete_seamless.png');
+ }

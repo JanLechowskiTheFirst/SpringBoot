@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <link>
     <meta charset="UTF-8"></meta>
+    <link th:href="@{/css/styleSheet.css}" rel="stylesheet" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -15,24 +16,22 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center"><h2>Home Page</h2></div>
-                <div class="panel-body">
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '/login';">Log in</button>
+        <div class="col-lg-5"></div>
+        <div class="col-lg-2">
+            <div class="panel panel-default centered">
+                <div class="panel-body text-center">
+                    <div>
+                        <button type="button" class="btn btn-primary-outline btn-block btn-md" onclick="location.href = '/login';">Login with email</button>
+                        <br/>
+                        <br/>
+                        <button type="button" class="btn btn-primary-outline btn-block btn-md" onclick="location.href = '/register';">Register with email</button>
+                        <br/>
+                        <br/>
+                        <button type="button" class="btn btn-primary-outline btn-block btn-md" onclick="location.href = '/admin/admin';">Login to admin panel</button>
                     </div>
-                    <br/>
-                    <br/>
-                    <h5>If you don't have account register first</h5>
-                    <button type="button" class="btn btn-info btn-sm" onclick="location.href = '/register';">Register</button>
-                    <h5>Login to admin panel</h5>
-                    <button type="button" class="btn btn-info btn-sm" onclick="location.href = '/admin/admin';">Admin panel</button>
-               </div>
                </div>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-5"></div>
     </div>
 </body>
 </html>
