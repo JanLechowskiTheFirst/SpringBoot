@@ -3,32 +3,47 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"></meta>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link th:href="@{/css/styleSheet.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <title>login</title>
 </head>
 <body>
-<h1>Login</h1>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<div th:if="${param.error}">
-    Email and password are ivalid.
-</div>
-<br/>
-<h3>Login to see the posts:</h3>
-<form th:action="@{/login}" method="post">
-    <div><label> Username:<input type="text" name="username"/> </label></div>
-    <div><label> Password:<input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
-<br/>
-<a href="/register">Register</a>
+    <div class="row padding40"></div>
+    <div class="row padding40">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="padding40">
+            <h3>Login to see the posts:</h3>
+            <div th:if="${param.logout}">
+                You have been logged out
+            </div>
+            <div class="warning">
+                <div th:if="${param.error}">
+                    Email and password are ivalid
+                </div>
+            </div>
+            <form class="form-group" th:action="@{/login}" method="post">
+                <div>
+                    <label>Username:</label><input class="form-control" type="text" name="username"/>
+                </div>
+                <div>
+                    <label>Password:</label><input class="form-control" type="password" name="password"/>
+                </div>
+                <div class="text-center padding5"><input class="btn btn-primary btn-md" type="submit" value="Sign In"/></div>
+            </form>
+            <div class="black">
+                <a href="/register">Register</a>
+            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
 </body>
 </html>

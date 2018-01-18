@@ -1,13 +1,62 @@
-.btn-primary-outline {
-    background-color: #4169E1;
+.btn-primary {
+    background-color: white !important;
+    border-color: white !important;
+    color: black !important;
+    padding:2%;
+  }
+ .btn:hover {
+    background-color: #ededed !important;
   }
 
- .centered {
-   position: fixed;
-   top: 20%;
+  btn:active{
+    border-color:grey !important;
+  }
 
+ .padding40{
+    padding: 5%
+ }
+
+ .padding30{
+    padding: 4%
+ }
+
+  .padding10{
+     padding: 2%
+  }
+
+ .padding5{
+    padding: 1%
  }
 
  body{
-    background-image: url('../css/images/concrete_seamless.png');
+    background-color: #FFA07A !important;
+    color: white !important;
+    min-height:100%;
+    min-width:100%;
  }
+
+ html{
+    height:100%;
+    width:100%;
+ }
+
+ .italic{
+    font-style: italic;
+ }
+
+ .panel-body{
+    background-color: #FFDAB9 !important;
+    color:black;
+    }
+
+ a{
+ color: black !important;
+ }
+
+ .warning{
+    color: red !important;
+    font-weight: bold;
+ }
+
+
+

@@ -20,3 +20,10 @@ ale ktos o roli Admin mial dostep do wszystkich stron.
 
 Pomysl na dalszy rozwoj. Tylko jedna osoba na poczatku bedzie miala role Admin. Trzba stworzyc panel admina do ktorego tylko
 admini maja dostep, w ktorym bedzie mozna nadac uzytkownikowi role admina.
+
+Dodam role moderatora, ktory ma mniejsze uprawnienia niz admin. Moderator bedzie logował tylko do strony dowolnej osoby
+i bedzie mogl usuwac posty. Bedzie mial swoja mala strone, na ktorej beda request usuniec.
+
+User bedzie mial mozliwosc zglosic chec usuniecia i bedzie informowany o biezacym statusie usuwania.
+
+strona admina bedzie zwierala spis osob z mozliwoscia zmiany roli na moderatora lub admina dowolnej osoby(moze rowniez request)
