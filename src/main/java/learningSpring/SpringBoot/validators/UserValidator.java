@@ -33,7 +33,7 @@ public class UserValidator implements Validator{
             err.rejectValue("password", "password.size");
         }
 
-                if (userRepo.findOneByMail(user.getEmail()) != null) {
+        if (userRepo.findOneByMail(user.getEmail()) != null) {
             err.rejectValue("email", "email.duplicated");
         }
 
