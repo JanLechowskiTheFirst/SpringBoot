@@ -11,7 +11,6 @@ public class Users {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "sequence")
     @SequenceGenerator(name = "sequence", sequenceName = "usr_id")
     @Column(name="id")
-    @JoinColumn
     public Integer id;
     @Column(name="email")
     private String email;

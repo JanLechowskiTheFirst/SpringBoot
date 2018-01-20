@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
 public class UserValidator implements Validator{
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
     @Override
     public boolean supports(Class<?> clazz) {

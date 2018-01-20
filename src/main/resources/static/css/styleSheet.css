@@ -49,6 +49,11 @@
     color:black;
     }
 
+  .post-body{
+      background-color: #FFFFF0 !important;
+      color:black;
+   }
+
  a{
  color: black !important;
  }
@@ -58,5 +63,14 @@
     font-weight: bold;
  }
 
+ .post{
+    word-wrap:break-word;
+    font-family: Georgia, "Times New Roman", Times, serif;
 
+ }
 
+  .date{
+     word-wrap:break-word;
+     font-family: Georgia, "Times New Roman", Times, serif;
+     color: #808080;
+  }

@@ -25,7 +25,6 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String serveLoginnPage(){
-        //TODO validators
         return "loginPage";
     }
 

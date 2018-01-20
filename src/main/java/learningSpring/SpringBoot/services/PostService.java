@@ -12,9 +12,9 @@ import java.util.List;
 @Service
 public class PostService{
     @Autowired
-    PostRepo postRepo;
+    private PostRepo postRepo;
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
     public List<Post> getAllPosts(String email){
         return postRepo.findByUserId(userRepo.findOneByMail(email).getId());

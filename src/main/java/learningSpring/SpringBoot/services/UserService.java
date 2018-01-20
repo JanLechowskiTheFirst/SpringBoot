@@ -22,11 +22,11 @@ import java.util.Set;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
     @Autowired
-    RoleRepo role;
+    private RoleRepo role;
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private  BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void addUserToDB(UserForm registrationForm){
         String email = registrationForm.getEmail();

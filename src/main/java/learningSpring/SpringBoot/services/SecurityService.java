@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecurityService {
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
 
     public String getLoggedInUser() {

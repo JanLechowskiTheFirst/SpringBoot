@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"></meta>
+    <link th:href="@{/css/styleSheet.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -10,20 +11,31 @@
     <title>register</title>
 </head>
 <body>
-    <h1>Registration</h1>
-    <br/>
-    <h3>Create user</h3>
-    <form th:action="@{/register}" th:object="${UserForm}" method="post">
-        <div><label> Username:<input type="text" th:field="*{email}"/> </label></div>
-        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+    <div class="padding40"></div>
+    <div class="row padding40">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="padding40">
+            <h3>Register</h3>
+            <form class="form-group" th:action="@{/register}" th:object="${UserForm}" method="post">
+            <div><label>Email:</label><input type="text" class="form-control" th:field="*{email}"/></div>
+            <div class="warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
 
-        <div><label> Password:<input type="password" th:field="*{password}"/> </label></div>
-        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+            <div><label> Password:</label><input type="password" class="form-control" th:field="*{password}"/></div>
+            <div class="warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
 
-        <div><label> Repeat Password:<input type="password" th:field="*{password2}"/> </label></div>
-        <div th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">Repeat Password Error</div>
-        <div><input type="submit" value="Register"/></div>
-        <a href="/login">Login</a>
-    </form>
+            <div><label> Repeat Password:</label><input type="password" class="form-control" th:field="*{password2}"/> </div>
+            <div class="warning" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">Repeat Password Error</div>
+            <div class="text-center padding5"><input class="btn btn-primary btn-md" type="submit" value="Register"/></div>
+            <a href="/login">Login</a>
+        </form>
+        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
 </body>
 </html>
