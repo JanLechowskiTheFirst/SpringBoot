@@ -1,7 +1,7 @@
 # SpringBoot
 My first SpringBoot app.
 
-Servlet is based on SpringBoot, Maven, JPA, Thymeleafe.
+Servlet is based on SpringBoot, Maven, JPA, Hibernate, Thymeleaf.
 
 Aplication's role is to enable sign in or sign up,
 depending on whether that user entity existance in the DB.
