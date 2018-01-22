@@ -33,3 +33,9 @@ strona admina bedzie zwierala spis osob z mozliwoscia zmiany roli na moderatora 
 Trzeba posprzatac kod, mi widoki.
 
 Dobrze by wygladal albo search albo scope dat albo troche jak na blogu np menu z miesiacami/latami - przekierwoujacy na poczatek danego roku/miesiaca
+
+Dodac funkcje jQuery ktora bedzie robic taki 'spis tresci', tj dla mieiecy i lat bedzie generowac odnosniki.
+Będe musial napisac dwie rzeczy, po pierwsze generowanie Id dla postow (bo chyba bez id nie mozena sie odnosic) i druga do generowania odnosinikow
+ale ta juz mam przemylana. Trzeba w petli sprwadzac po kolei od najwczesniejszego postu - wziac jego date, rok i miesiac i sprawdzac czy miesisac,rok
+sie zmienily - jesli zmieni sie miesiac, dodac go do listy odnosinikow i z nim porownywac dalej. To samo dla lat. Najpierw linijka dla miesiecy 
+a potem dla lat, zeby bylo np  grudzein i wyzej np 2017.
