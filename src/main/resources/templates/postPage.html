@@ -51,9 +51,18 @@
                                 <div class="panel panel-default">
                                     <div class="padding10">
                                         <div class="panel-body post-body rounded">
-                                            <span class="date" th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}"></span>
+                                            <span class="date" th:attr="id=${post.id}" th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}"></span>
                                             <br/>
-                                            <span class="post" th:text=" ${post.post}"></span>
+                                            <span class="post" th:attr="id=${post.id}" th:text=" ${post.post}"></span>
+                                            <script>
+                                                $(".post").click(function(){
+                                                    var text = $(this).text();
+                                                    var id = $(this).attr("id");
+                                                    $(this).replaceWith($('<textarea maxlength="300" rows="6" >' + text + '</textarea>'));
+                                                    <!--$(this).attr('', 300);-->
+                                                    <!--$(this).attr('rows', 6);-->
+                                                })
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +71,35 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4"></div>
+            <div class="col-lg-4 index text-center">
+                <script>
+                var monthHolder=0;
+                var yearHolder=0;
+                $("document").ready(function(){
+                console.log("dok ready");
+                $(".date").each(function(){
+                id = $(this).attr("id");
+                var date = $(this).text();
+                var index = date.indexOf('-');
+                var secoundIndex = date.lastIndexOf('-');
+                var month = date.substring(index+1, secoundIndex);
+                var year = date.substring(secoundIndex+1, secoundIndex+5);
+                if(year>yearHolder){
+                    add('Wpisy z roku' + year)
+                    yearHolder=year;
+                }
+                if(month>monthHolder){
+                    add(month);
+                    monthHolder=month;
+                }
+                })
+                });
+                function add(param){
+                    $(".index").append($("<a></a>").text(param).attr("href", "#"+id))
+                    $(".index").append($("<br/>"))
+                    }
+   		</script>
+            </div>
         </div>
     </body>
 </html>

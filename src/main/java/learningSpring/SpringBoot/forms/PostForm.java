@@ -3,11 +3,15 @@ package learningSpring.SpringBoot.forms;
 import java.sql.Timestamp;
 
 public class PostForm {
+    private int id;
     private String post;
     private int user_id;
     private Timestamp postDate;
     private String content;
 
+    public int getId(){
+        return id;
+    }
 
     public String getPostText(){
         return post;
@@ -20,6 +24,7 @@ public class PostForm {
     public Timestamp getPostDate(){
         return postDate;
     }
+
 
     public String getContent(){
         return content;
