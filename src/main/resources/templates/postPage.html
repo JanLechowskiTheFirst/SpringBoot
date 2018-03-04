@@ -45,29 +45,84 @@
                      </form>
                  </div>
                 <div>
-                    <div>
-                        <span th:block th:each="post : ${post}">
-                            <span>
-                                <div class="panel panel-default">
-                                    <div class="padding10">
-                                        <div class="panel-body post-body rounded">
+                    <div class="deletable">
+                        <div th:block th:each="post : ${post}">
+                            <div>
+                                <div class="anchor3">
+                                    <div class="panel panel-default padding10 anchor2 postMode" >
+                                        <div class="panel-body post-body rounded anchor">
                                             <span class="date" th:attr="id=${post.id}" th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}"></span>
                                             <br/>
                                             <span class="post" th:attr="id=${post.id}" th:text=" ${post.post}"></span>
-                                            <script>
-                                                $(".post").click(function(){
-                                                    var text = $(this).text();
-                                                    var id = $(this).attr("id");
-                                                    $(this).replaceWith($('<textarea maxlength="300" rows="6" >' + text + '</textarea>'));
-                                                    <!--$(this).attr('', 300);-->
-                                                    <!--$(this).attr('rows', 6);-->
-                                                })
-                                            </script>
+                                            <textarea style="display:none" maxlength="300" rows="6" class="area"></textarea>
+                                            <a style="display:none"></a>
+                                            <br/>
+                                            <button style="display:none">Edit</button><button style="display:none">Delete</button>
+                                            <button style="display:none">Ok</button><button style="display:none">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
-                            </span>
-                        </span>
+                                <script>
+                                             $(".anchor3").on('mouseenter', ".postMode", function(){
+                                                $(this).find("button:contains('Edit')").show();
+                                                $(this).find("button:contains('Delete')").show();
+                                             });
+                                              $(".anchor3").on('mouseleave', ".postMode",  function(){
+                                                $(this).find("button").hide();
+                                            });
+                                            $(".anchor").on("click", "button:contains('Edit')", function(){
+                                                 var text = $(this).parent().find(".post").text();
+                                                 var id = $(this).parent().find(".post").attr("id");
+                                                 $(this).parent().find(".post").hide();
+                                                 $(this).parent().find("textarea").show();
+                                                 $(this).parent().find("textarea").attr("id", id);
+                                                 $(this).parent().find("textarea").val(text);
+                                                 $(this).parent().parent().removeClass("postMode").addClass("editMode");
+                                                 $(this).parent().find("button").hide();
+                                                 $(this).parent().unbind('mouseenter mouseleave');
+                                                 $(this).parent().find("a").text(text);
+                                             });
+
+                                             $(".anchor").on("click", "button:contains('Delete')", function(){
+                                                 //ajaxShot delete
+                                                 $(this).parentsUntil(".deletable").remove();
+                                             });
+
+                                             $(".anchor3").on('mouseenter', ".editMode",  function(){
+                                               $(this).find("button:contains('Ok')").show();
+                                               $(this).find("button:contains('Cancel')").show();
+                                             });
+                                              $(".anchor3").on('mouseleave', ".editMode",  function(){
+                                                $(this).find("button").hide();
+                                            });
+
+                                             $(".anchor").on("click", "button:contains('Ok')", function(){
+                                                 var text2 = $(this).parent().find("textarea").val();
+                                                 $(this).parent().find(".post").show();
+                                                 $(this).parent().find(".post").text($(this).parent().find("textarea").val());
+                                                 $(this).parent().find("textarea").hide();
+                                                 $(this).parent().parent().removeClass("editMode").addClass("postMode");
+                                                 $(this).parent().find("button").hide();
+                                                 $(this).parent().unbind('mouseenter mouseleave');
+                                                 $(this).parent().find("a").text(text2);
+                                                 //ajaxshot modify
+                                             });
+
+                                             $(".anchor").on("click", "button:contains('Cancel')", function(){
+                                                 $(this).parent().find(".post").show();
+                                                 var text3 = $(this).parent().find("a").text();
+                                                 console.log(text3);
+                                                 $(this).parent().find(".post").text(text3);
+                                                 $(this).parent().find("textarea").hide();
+                                                 $(this).parent().parent().removeClass("editMode").addClass("postMode");
+                                                 $(this).parent().find("button").hide();
+                                                 $(this).parent().unbind('mouseenter mouseleave');
+                                             });
+
+
+                                        </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

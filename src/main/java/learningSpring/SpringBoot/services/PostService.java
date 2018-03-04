@@ -30,4 +30,10 @@ public class PostService{
         Collections.sort(posts);
         return posts;
     }
+
+    public void modifyPost(String post, Integer id){
+        Post modifypost = postRepo.findOne(id);
+        modifypost.setPost(post);
+        postRepo.saveAndFlush(modifypost);
+    }
 }
