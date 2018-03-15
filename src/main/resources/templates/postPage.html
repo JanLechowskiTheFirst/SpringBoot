@@ -44,21 +44,22 @@
                          </div>
                      </form>
                  </div>
-                <div>
+                 <div class="userId" th:attr="userId=${post[0].userId}"></div>
+                 <div>
                     <div class="deletable">
                         <div th:block th:each="post : ${post}">
                             <div>
                                 <div class="anchor3">
                                     <div class="panel panel-default padding10 anchor2 postMode" >
                                         <div class="panel-body post-body rounded anchor">
-                                            <span class="date" th:attr="id=${post.id}" th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}"></span>
+                                            <span class="date" th:attr="id=${post.id}" th:attr="id=${post.postDate}" th:text="${#dates.format(post.postDate, 'dd-MM-yyyy HH:mm')}"></span>
                                             <br/>
                                             <span class="post" th:attr="id=${post.id}" th:text=" ${post.post}"></span>
                                             <textarea style="display:none" maxlength="300" rows="6" class="area"></textarea>
                                             <a style="display:none"></a>
                                             <br/>
-                                            <button style="display:none">Edit</button><button style="display:none">Delete</button>
-                                            <button style="display:none">Ok</button><button style="display:none">Cancel</button>
+                                            <button class="btn btn-primary btn-md" style="display:none">Edit</button><button class="btn btn-primary btn-md" style="display:none">Delete</button>
+                                            <button class="btn btn-primary btn-md" style="display:none">Ok</button><button class="btn btn-primary btn-md" style="display:none">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +71,7 @@
                                               $(".anchor3").on('mouseleave', ".postMode",  function(){
                                                 $(this).find("button").hide();
                                             });
-                                            $(".anchor").on("click", "button:contains('Edit')", function(){
+                                            $(".anchor").one("click", "button:contains('Edit')", function(){
                                                  var text = $(this).parent().find(".post").text();
                                                  var id = $(this).parent().find(".post").attr("id");
                                                  $(this).parent().find(".post").hide();
@@ -83,8 +84,16 @@
                                                  $(this).parent().find("a").text(text);
                                              });
 
-                                             $(".anchor").on("click", "button:contains('Delete')", function(){
-                                                 //ajaxShot delete
+                                             $(".anchor").one("click", "button:contains('Delete')", function(){
+                                                 var id2 = $(this).parent().find(".post").attr("id");
+                                                  $.ajax({
+                                                 headers: {
+                                                    'Accept': 'application/json',
+                                                    'Content-Type': 'application/json'
+                                                  },
+                                                  method: "DELETE",
+                                                  url: "/delete?id=" + id2
+                                                });
                                                  $(this).parentsUntil(".deletable").remove();
                                              });
 
@@ -96,8 +105,17 @@
                                                 $(this).find("button").hide();
                                             });
 
-                                             $(".anchor").on("click", "button:contains('Ok')", function(){
+                                             $(".anchor").one("click", "button:contains('Ok')", function(){
                                                  var text2 = $(this).parent().find("textarea").val();
+                                                 var id2 = $(this).parent().find("textarea").attr("id");
+                                                 var postDate = $(this).parent().find(".date").attr("postDate");
+                                                 var userId = $(".userId").attr("userId");
+                                                 var post = new Object();
+                                                 post.id=id2;
+                                                 post.post=text2;
+                                                 post.postDate=postDate;
+                                                 post.userId=userId;
+                                                 var postString = JSON.stringify(post);
                                                  $(this).parent().find(".post").show();
                                                  $(this).parent().find(".post").text($(this).parent().find("textarea").val());
                                                  $(this).parent().find("textarea").hide();
@@ -105,10 +123,18 @@
                                                  $(this).parent().find("button").hide();
                                                  $(this).parent().unbind('mouseenter mouseleave');
                                                  $(this).parent().find("a").text(text2);
-                                                 //ajaxshot modify
+                                                 $.ajax({
+                                                 headers: {
+                                                    'Accept': 'application/json',
+                                                    'Content-Type': 'application/json'
+                                                  },
+                                                  method: "PUT",
+                                                  url: "/modify",
+                                                  data: postString
+                                                });
                                              });
 
-                                             $(".anchor").on("click", "button:contains('Cancel')", function(){
+                                             $(".anchor").one("click", "button:contains('Cancel')", function(){
                                                  $(this).parent().find(".post").show();
                                                  var text3 = $(this).parent().find("a").text();
                                                  console.log(text3);
@@ -131,7 +157,6 @@
                 var monthHolder=0;
                 var yearHolder=0;
                 $("document").ready(function(){
-                console.log("dok ready");
                 $(".date").each(function(){
                 id = $(this).attr("id");
                 var date = $(this).text();
@@ -139,11 +164,11 @@
                 var secoundIndex = date.lastIndexOf('-');
                 var month = date.substring(index+1, secoundIndex);
                 var year = date.substring(secoundIndex+1, secoundIndex+5);
-                if(year>yearHolder){
-                    add('Wpisy z roku' + year)
+                if(year != yearHolder){
+                    add('Wpisy z roku ' + year)
                     yearHolder=year;
                 }
-                if(month>monthHolder){
+                if(month != monthHolder){
                     add(month);
                     monthHolder=month;
                 }

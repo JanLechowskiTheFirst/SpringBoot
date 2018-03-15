@@ -31,9 +31,11 @@ public class PostService{
         return posts;
     }
 
-    public void modifyPost(String post, Integer id){
-        Post modifypost = postRepo.findOne(id);
-        modifypost.setPost(post);
-        postRepo.saveAndFlush(modifypost);
+    public void modifyPost(Post post){
+        postRepo.saveAndFlush(post);
+    }
+
+    public void deletePost(int id){
+        postRepo.delete(id);
     }
 }
