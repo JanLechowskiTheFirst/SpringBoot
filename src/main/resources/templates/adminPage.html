@@ -3,13 +3,77 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"></meta>
+    <link th:href="@{/css/styleSheet.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>After Admin Login</title>
 </head>
-<body>
-    <a>SUCCESS LOGIN AS ADMIN!</a>
-</body>
+    <body>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10"></div>
+        <div class="col-lg-1">
+            <form th:action="@{/logout}" method="post">
+                <div class="text-center padding5">
+                    <input class="btn btn-primary btn-md" type="submit" value="Logout"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div th:block th:each="role : ${role}">
+                <div class="panel panel-default padding10" >
+                    <div class="panel-body rounded">
+                        <span  th:attr="userRole= ${role[1]}" th:text=" ${role[2]}"></span>
+                        <form th:attr="userId= ${role[0]}" class="add" style="display:none" th:action="@{'/admin/admin/addAdmin?userId=' + ${role[0]}}" method="post">
+                            <div class="text-center padding5">
+                                <input class="btn btn-primary btn-md" type="submit" value="add"/>
+                            </div>
+                        </form>
+                        <form class="del" style="display:none" th:action="@{'/admin/admin/deleteAdmin?userId=' + ${role[0]}}" method="post">
+                            <div class="text-center padding5">
+                                <input class="btn btn-primary btn-md" type="submit" value="del"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+        <script>
+            $(document).ready(function(){
+                    var users = [];
+                    var found = false;
+                    $("span").each(function(){
+                                var userId = $(this).parent().find(".add").attr("userId");
+                                console.log(userId);
+                                var userRole = $(this).attr("userRole");
+                                for (i = 0; i < users.length; i++){
+                                console.log(userId);
+                                console.log(users[i]);
+                                            if(users[i] == userId){
+                                                    found=true;
+                                                    $(this).hide();
+                                            }
+                                }
+                                if(!found){
+                                            users.push(userId);
+                                            if(userRole == "ROLE_admin"){
+                                                    $(this).parent().find(".del").show();
+                                            }
+                                            else {
+                                                    $(this).parent().find(".add").show();
+                                            }
+                                 }
+                                 found=false;
+                    });
+             });
+        </script>
+    </body>
 </html>

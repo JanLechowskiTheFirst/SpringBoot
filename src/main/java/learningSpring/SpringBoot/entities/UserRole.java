@@ -31,6 +31,19 @@ public class UserRole {
         this.userRole=userRole;
     }
 
+    public UserRole(int id, int userId, String userRole){
+        this.id=id;
+        this.userId=userId;
+        this.userRole=userRole;
+    }
+
+    public UserRole(int id, int userId, String userRole, Users user){
+        this.id=id;
+        this.userId=userId;
+        this.userRole=userRole;
+        this.users=user;
+    }
+
     public Users getUserEntity(){ return users; }
 
     public int getUserId(){
@@ -40,6 +53,5 @@ public class UserRole {
     public String getUserRole(){
         return userRole;
     }
-
 
 }
