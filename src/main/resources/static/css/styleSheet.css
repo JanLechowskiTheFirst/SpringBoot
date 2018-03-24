@@ -78,3 +78,11 @@
   textarea{
   width: 100%
   }
+
+ .admin{
+        color: tomato !important;
+  }
+
+ .user{
+        color: lightgray !important;
+  }

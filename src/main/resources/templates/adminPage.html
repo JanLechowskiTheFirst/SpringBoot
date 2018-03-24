@@ -23,34 +23,34 @@
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
+    <div class="row padding10">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-2">
             <div th:block th:each="role : ${role}">
                 <div class="panel panel-default padding10" >
-                    <div class="panel-body rounded">
-                        <span  th:attr="userRole= ${role[1]}" th:text=" ${role[2]}"></span>
+                    <div class="panel-body rounded text-center">
+                        <h2 class="padding10" th:attr="userRole= ${role[1]}" th:text=" ${role[2]}"></h2>
                         <form th:attr="userId= ${role[0]}" class="add" style="display:none" th:action="@{'/admin/admin/addAdmin?userId=' + ${role[0]}}" method="post">
                             <div class="text-center padding5">
-                                <input class="btn btn-primary btn-md" type="submit" value="add"/>
+                                <input class="btn btn-primary btn-sm" type="submit" value="Add admin privilege"/>
                             </div>
                         </form>
                         <form class="del" style="display:none" th:action="@{'/admin/admin/deleteAdmin?userId=' + ${role[0]}}" method="post">
                             <div class="text-center padding5">
-                                <input class="btn btn-primary btn-md" type="submit" value="del"/>
+                                <input class="btn btn-primary btn-sm" type="submit" value="Delete admin privilege"/>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-5"></div>
     </div>
         <script>
             $(document).ready(function(){
                     var users = [];
                     var found = false;
-                    $("span").each(function(){
+                    $("h2").each(function(){
                                 var userId = $(this).parent().find(".add").attr("userId");
                                 console.log(userId);
                                 var userRole = $(this).attr("userRole");
@@ -66,9 +66,11 @@
                                             users.push(userId);
                                             if(userRole == "ROLE_admin"){
                                                     $(this).parent().find(".del").show();
+                                                    $(this).addClass("admin");
                                             }
                                             else {
                                                     $(this).parent().find(".add").show();
+                                                    $(this).addClass("user");
                                             }
                                  }
                                  found=false;
