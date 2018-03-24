@@ -46,12 +46,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/login","/","login?logout").permitAll()
-            .antMatchers("/admin/**").access("hasRole('ROLE_admin')") //TEST: admin, 123
-            .antMatchers("/post/**").access("hasAnyRole('ROLE_user','ROLE_admin')") //TEST: test, 123
+            .antMatchers("/admin/**").access("hasRole('ROLE_admin')")
+            .antMatchers("/post/**").access("hasAnyRole('ROLE_user','ROLE_admin')")
             .and()
             .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/post")
             .and()
-            .logout().logoutSuccessUrl("/login?logout")
+            .logout().logoutSuccessUrl("/?logout")
             .and()
             .exceptionHandling().accessDeniedPage("/403")
             .and()
