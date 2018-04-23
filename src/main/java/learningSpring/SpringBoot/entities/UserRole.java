@@ -54,4 +54,19 @@ public class UserRole {
         return userRole;
     }
 
+    public int getId(){
+        return id;
+    }
+
+    public void setUserId(int userId){
+        this.userId=userId;
+    }
+
+    public void setUserRole(String userRole){
+        this.userRole=userRole;
+    }
+
+    public void setId(int id){
+        this.id=id;
+    }
 }

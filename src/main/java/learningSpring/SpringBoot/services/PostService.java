@@ -17,18 +17,12 @@ public class PostService{
     private UserRepo userRepo;
 
     public List<Post> getAllPosts(String email){
-        return postRepo.findByUserId(userRepo.findOneByMail(email).getId());
+        return postRepo.findAllPostsByUserEmailSortedAsc(email);
     }
 
     public void addNewPost(String email, PostForm postform){
-        Post post = new Post(userRepo.findOneByMail(email).getId(), postform.getPostText());
+        Post post = new Post(userRepo.findUserIdByEmail(email), postform.getPostText());
         postRepo.saveAndFlush(post);
-    }
-
-    public List<Post> getSortedPosts(String email){
-        List<Post> posts = getAllPosts(email);
-        Collections.sort(posts);
-        return posts;
     }
 
     public void modifyPost(Post post){

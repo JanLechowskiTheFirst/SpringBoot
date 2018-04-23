@@ -1,11 +1,12 @@
 package learningSpring.SpringBoot.entities;
 
+import org.joda.time.DateTime;
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="post")
-public class Post implements Comparable<Post>{
+public class Post{
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
     @SequenceGenerator(name = "id_Sequence", sequenceName = "pst_id")
@@ -28,6 +29,12 @@ public class Post implements Comparable<Post>{
     public Post(int userId, String post){
         this.userId=userId;
         this.post=post;
+    }
+
+    public Post(int userId, String post, Date postDate){
+        this.userId=userId;
+        this.post=post;
+        this.postDate=postDate;
     }
 
     public Users getUsers(){
@@ -56,10 +63,6 @@ public class Post implements Comparable<Post>{
         return postDate;
     }
 
-    @Override
-    public int compareTo(Post o) {
-        return o.getPostDate().compareTo(getPostDate());
-    }
 }
 
 

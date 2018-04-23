@@ -1,0 +1,19 @@
+Unit tests
+    naming and testing scheme: <method>_Should<expected>_When<condition>
+
+mockito
+    use all services methods
+
+
+
+
+Integration tests
+    Smoke test:
+    getAll entities from DB
+    save all entities to DB
+    Other integration:
+    add admin role
+    delete admin role
+    modify post
+    delete post
+    test all validators

@@ -22,7 +22,7 @@ public class PostFormController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = authentication.getName();
         model.addAttribute("postForm", new PostForm());
-        model.addAttribute("post", postService.getSortedPosts(userEmail));
+        model.addAttribute("post", postService.getAllPosts(userEmail));
         return "postPage";
     }
 
