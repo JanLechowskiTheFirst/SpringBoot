@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
         String email = registrationForm.getEmail();
         String password = bCryptPasswordEncoder.encode(registrationForm.getPassword());
         userRepo.saveAndFlush(new Users(email, password));
-        role.saveAndFlush(new UserRole(userRepo.findOneByMail(email).getId(), "ROLE_user"));
+        role.saveAndFlush(new UserRole(userRepo.findUserIdByEmail(email), "ROLE_user"));
     }
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
