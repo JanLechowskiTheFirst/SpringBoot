@@ -5,7 +5,7 @@ public enum RoleEnum {
         public String toString() {
             return "ROLE_admin";
         }
-    },
+    } ,
 
     USER {
         public String toString() {
