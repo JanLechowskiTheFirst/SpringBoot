@@ -1,6 +1,5 @@
 package learningSpring.SpringBoot.controllers;
 
-import learningSpring.SpringBoot.entities.Post;
 import learningSpring.SpringBoot.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

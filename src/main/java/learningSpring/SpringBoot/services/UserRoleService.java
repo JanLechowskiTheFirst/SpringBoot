@@ -1,6 +1,7 @@
 package learningSpring.SpringBoot.services;
 
 import learningSpring.SpringBoot.entities.UserRole;
+import learningSpring.SpringBoot.enums.RoleEnum;
 import learningSpring.SpringBoot.repositories.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ UserRoleService {
     public boolean hasRoleAdmin(List<UserRole> role, int userId){
 
         for(UserRole r:role){
-            if(r.getUserId() == userId && r.getUserRole().equals("ROLE_admin"))
+            if(r.getUserId() == userId && r.getUserRole() == RoleEnum.ADMIN)
                 return true;
         }
         return false;
@@ -29,7 +30,7 @@ UserRoleService {
 
     public void addAdminAdmin(int userId) {
         List<UserRole> role = roleRepo.findByUserId(userId);
-        UserRole adminRole = new UserRole(userId, "ROLE_admin");
+        UserRole adminRole = new UserRole(userId, RoleEnum.ADMIN);
         if(!hasRoleAdmin(role, userId)) {
             roleRepo.saveAndFlush(adminRole);
         }
@@ -40,7 +41,7 @@ UserRoleService {
 
     public void deleteAdminRole(int userId) {
         List<UserRole> role = roleRepo.findByUserId(userId);
-        UserRole adminRole = new UserRole(role.get(0).id, userId, "ROLE_admin");
+        UserRole adminRole = new UserRole(role.get(0).id, userId, RoleEnum.ADMIN);
         if(hasRoleAdmin(role, userId)) {
             roleRepo.delete(adminRole);
         }

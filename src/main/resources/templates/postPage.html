@@ -44,10 +44,10 @@
                          </div>
                      </form>
                  </div>
-                 <div class="userId" th:attr="userId=${post[0].userId}"></div>
                  <div>
                     <div class="deletable">
                         <div th:block th:each="post : ${post}">
+                            <div class="userId" th:attr="userId=${post.userId}"></div>
                             <div>
                                 <div class="anchor3">
                                     <div class="panel panel-default padding10 anchor2 postMode" >

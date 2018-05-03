@@ -2,6 +2,7 @@ package learningSpring.SpringBoot.services;
 
 import learningSpring.SpringBoot.entities.UserRole;
 import learningSpring.SpringBoot.entities.Users;
+import learningSpring.SpringBoot.enums.RoleEnum;
 import learningSpring.SpringBoot.forms.UserForm;
 import learningSpring.SpringBoot.repositories.RoleRepo;
 import learningSpring.SpringBoot.repositories.UserRepo;
@@ -32,7 +33,7 @@ public class UserService implements UserDetailsService {
         String email = registrationForm.getEmail();
         String password = bCryptPasswordEncoder.encode(registrationForm.getPassword());
         userRepo.saveAndFlush(new Users(email, password));
-        role.saveAndFlush(new UserRole(userRepo.findUserIdByEmail(email), "ROLE_user"));
+        role.saveAndFlush(new UserRole(userRepo.findUserIdByEmail(email), RoleEnum.USER));
     }
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -40,7 +41,7 @@ public class UserService implements UserDetailsService {
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (UserRole role : user.getRoles()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getUserRole()));
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getUserRole().returnDesc()));
         }
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);

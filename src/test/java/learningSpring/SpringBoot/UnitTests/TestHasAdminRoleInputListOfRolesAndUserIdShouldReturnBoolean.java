@@ -2,6 +2,7 @@ package learningSpring.SpringBoot.UnitTests;
 
 
 import learningSpring.SpringBoot.entities.UserRole;
+import learningSpring.SpringBoot.enums.RoleEnum;
 import learningSpring.SpringBoot.services.UserRoleService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,10 +17,10 @@ public class TestHasAdminRoleInputListOfRolesAndUserIdShouldReturnBoolean {
 
         List<UserRole> roleList = new ArrayList<>();
 
-        UserRole role1 =  new UserRole(1, 1, "ROLE_user");
-        UserRole role2 =  new UserRole(2, 1, "ROLE_admin");
-        UserRole role3 =  new UserRole(3, 2, "ROLE_user");
-        UserRole role4 =  new UserRole(4, 3, "ROLE_user");
+        UserRole role1 =  new UserRole(1, 1, RoleEnum.USER);
+        UserRole role2 =  new UserRole(2, 1, RoleEnum.ADMIN);
+        UserRole role3 =  new UserRole(3, 2, RoleEnum.USER);
+        UserRole role4 =  new UserRole(4, 3, RoleEnum.USER);
 
         roleList.add(role1);
         roleList.add(role2);
@@ -35,9 +36,9 @@ public class TestHasAdminRoleInputListOfRolesAndUserIdShouldReturnBoolean {
 
         List<UserRole> roleList = new ArrayList<>();
 
-        UserRole role1 =  new UserRole(1, 1, "ROLE_user");
-        UserRole role2 =  new UserRole(3, 2, "ROLE_user");
-        UserRole role3=  new UserRole(4, 3, "ROLE_user");
+        UserRole role1 =  new UserRole(1, 1, RoleEnum.USER);
+        UserRole role2 =  new UserRole(3, 2, RoleEnum.USER);
+        UserRole role3=  new UserRole(4, 3, RoleEnum.USER);
 
         roleList.add(role1);
         roleList.add(role2);

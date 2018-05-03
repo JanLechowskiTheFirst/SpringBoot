@@ -1,5 +1,6 @@
 package learningSpring.SpringBoot.entities;
 
+import learningSpring.SpringBoot.enums.RoleEnum;
 import javax.persistence.*;
 
 @Entity
@@ -26,21 +27,21 @@ public class UserRole {
         return users;
     }
 
-    public UserRole(int userId, String userRole){
+    public UserRole(int userId, RoleEnum userRole){
         this.userId=userId;
-        this.userRole=userRole;
+        this.userRole=userRole.returnDesc();
     }
 
-    public UserRole(int id, int userId, String userRole){
+    public UserRole(int id, int userId, RoleEnum userRole){
         this.id=id;
         this.userId=userId;
-        this.userRole=userRole;
+        this.userRole=userRole.returnDesc();
     }
 
-    public UserRole(int id, int userId, String userRole, Users user){
+    public UserRole(int id, int userId, RoleEnum userRole, Users user){
         this.id=id;
         this.userId=userId;
-        this.userRole=userRole;
+        this.userRole=userRole.returnDesc();
         this.users=user;
     }
 
@@ -50,20 +51,16 @@ public class UserRole {
         return userId;
     }
 
-    public String getUserRole(){
-        return userRole;
+    public RoleEnum getUserRole(){
+        return RoleEnum.getEnumByDesc(userRole);
     }
-
-    public int getId(){
-        return id;
-    }
-
+    
     public void setUserId(int userId){
         this.userId=userId;
     }
 
-    public void setUserRole(String userRole){
-        this.userRole=userRole;
+    public void setUserRole(RoleEnum userRole){
+        this.userRole=userRole.returnDesc();
     }
 
     public void setId(int id){
