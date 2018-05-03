@@ -34,9 +34,6 @@ UserRoleService {
         if(!hasRoleAdmin(role, userId)) {
             roleRepo.saveAndFlush(adminRole);
         }
-        else{
-            //todo
-        }
     }
 
     public void deleteAdminRole(int userId) {
@@ -44,9 +41,6 @@ UserRoleService {
         UserRole adminRole = new UserRole(role.get(0).id, userId, RoleEnum.ADMIN);
         if(hasRoleAdmin(role, userId)) {
             roleRepo.delete(adminRole);
-        }
-        else{
-            //todo
         }
     }
 }
