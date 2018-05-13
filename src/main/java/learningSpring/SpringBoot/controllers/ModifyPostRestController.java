@@ -14,8 +14,8 @@ public class ModifyPostRestController {
 
     @Autowired PostService postService;
     @RequestMapping(value = "/modify", method= RequestMethod.PUT)
-    public Post modifyPost(@RequestBody Post post){
+    public void modifyPost(@RequestBody Post post){
         postService.modifyPost(post);
-        return post;
+        return;
     }
 }

@@ -86,3 +86,9 @@
  .user{
         color: lightgray !important;
   }
+
+ .errorMessage{
+        color: red !important;
+        text-center;
+        font-size: large;
+ }

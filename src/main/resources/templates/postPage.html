@@ -45,6 +45,7 @@
                      </form>
                  </div>
                  <div>
+                    <a class="errorMessage padding10" style="display:none">Your operation didn't ended with a success. Please try again later.</a>
                     <div class="deletable">
                         <div th:block th:each="post : ${post}">
                             <div class="userId" th:attr="userId=${post.userId}"></div>
@@ -92,10 +93,14 @@
                                                     'Content-Type': 'application/json'
                                                   },
                                                   method: "DELETE",
-                                                  url: "/delete?id=" + id2
+                                                  url: "/delete?id=" + id2,
                                                 });
                                                  $(this).parentsUntil(".deletable").remove();
                                              });
+
+                                              $(document).one("ajaxError", function() {
+                                                  $(".errorMessage").show();
+                                               });
 
                                              $(".anchor3").on('mouseenter', ".editMode",  function(){
                                                $(this).find("button:contains('Ok')").show();
@@ -130,7 +135,7 @@
                                                   },
                                                   method: "PUT",
                                                   url: "/modify",
-                                                  data: postString
+                                                  data: postString,
                                                 });
                                              });
 
@@ -165,11 +170,51 @@
                 var month = date.substring(index+1, secoundIndex);
                 var year = date.substring(secoundIndex+1, secoundIndex+5);
                 if(year != yearHolder){
-                    add('Wpisy z roku ' + year)
+                    add('Posts from ' + year)
                     yearHolder=year;
                 }
                 if(month != monthHolder){
-                    add(month);
+
+                    switch(month) {
+                    case "01":
+                        add("January")
+                        break;
+                    case "02":
+                        add("Febuary")
+                        break;
+                    case "03":
+                        add("March")
+                        break;
+                    case "04":
+                        add("April")
+                        break;
+                    case "05":
+                        add("May")
+                        break;
+                    case "06":
+                        add("June")
+                        break;
+                    case "07":
+                        add("July")
+                        break;
+                    case "08":
+                        add("August")
+                        break;
+                    case "09":
+                        add("September")
+                        break;
+                    case "10":
+                        add("October")
+                        break;
+                    case "11":
+                        add("November")
+                        break;
+                    case "12":
+                        add("December")
+                        break;
+                    default:
+                        add(month)
+                   }
                     monthHolder=month;
                 }
                 })

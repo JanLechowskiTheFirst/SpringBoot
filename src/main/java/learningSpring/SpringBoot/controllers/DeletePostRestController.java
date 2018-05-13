@@ -9,7 +9,7 @@ public class DeletePostRestController {
 
     @Autowired
     PostService postService;
-    @RequestMapping(value = "/delete", method= RequestMethod.DELETE)
+    @RequestMapping(value = "/delete1", method= RequestMethod.DELETE)
     public void deletePost(@RequestParam("id") int id){
         postService.deletePost(id);
         return;
