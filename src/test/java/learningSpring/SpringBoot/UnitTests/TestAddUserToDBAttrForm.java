@@ -2,7 +2,6 @@ package learningSpring.SpringBoot.UnitTests;
 
 import learningSpring.SpringBoot.TestConfigurations.UserServiceTestConfig;
 import learningSpring.SpringBoot.forms.UserForm;
-import learningSpring.SpringBoot.repositories.PostRepo;
 import learningSpring.SpringBoot.repositories.RoleRepo;
 import learningSpring.SpringBoot.repositories.UserRepo;
 import learningSpring.SpringBoot.services.UserService;

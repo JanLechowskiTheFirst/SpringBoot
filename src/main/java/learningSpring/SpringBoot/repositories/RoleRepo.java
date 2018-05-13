@@ -1,14 +1,8 @@
 package learningSpring.SpringBoot.repositories;
 
 import learningSpring.SpringBoot.entities.UserRole;
-import learningSpring.SpringBoot.entities.Users;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 public interface RoleRepo extends JpaRepository<UserRole, Integer> {

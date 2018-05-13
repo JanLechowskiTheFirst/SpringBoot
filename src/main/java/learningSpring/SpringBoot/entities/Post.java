@@ -1,6 +1,5 @@
 package learningSpring.SpringBoot.entities;
 
-import org.joda.time.DateTime;
 import javax.persistence.*;
 import java.util.Date;
 

@@ -5,8 +5,6 @@ import learningSpring.SpringBoot.enums.RoleEnum;
 import learningSpring.SpringBoot.repositories.RoleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.management.RuntimeErrorException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
